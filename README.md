@@ -1,240 +1,99 @@
-```md
-# 🎬 ReelDrama — OTT Mobile Application
+# ReelDrama — OTT Mobile Application
 
-A cross-platform **OTT streaming mobile application** built with **React Native (Expo)** and **TypeScript**. The application provides OTP-based authentication, dynamic content browsing, a complete **Movie → Series → Season → Episode** navigation flow, and a custom video player with **HLS streaming** and **DRM-protected playback**.
+A cross-platform (Android/iOS) OTT streaming mobile app built with React Native (Expo) and TypeScript. Supports OTP-based authentication, a dynamic content feed, a full Movie → Series → Season → Episode content hierarchy, and a custom video player with HLS streaming and DRM-protected playback.
 
----
+## Tech Stack
 
+- **React Native (Expo)** + **TypeScript**
+- **NativeWind** (Tailwind CSS for React Native)
+- **React Navigation** (native-stack)
+- **TanStack React Query** — data fetching, caching, and mutations
+- **Axios** — HTTP client
+- **react-native-video** — HLS streaming with Widevine/FairPlay DRM support
+- **expo-image**, **expo-screen-orientation**, **@react-native-community/slider**
+- **AsyncStorage** — local token persistence
+- **EAS Build** — custom native dev client (required for DRM/video native modules, which Expo Go does not support)
 
-### Demo Highlights
+## Features
 
-- 🔐 OTP Authentication
-- 🏠 Dynamic Home Screen
-- 🎞️ Featured Carousel
-- 🎬 Movies & TV Series
-- 📺 Season & Episode Navigation
-- ▶️ Custom Video Player
-- ⏩ Seek, Play/Pause & Fullscreen
-- 📌 Continue Watching
-- 🔒 DRM Protected Streaming
-- 🚪 Logout Flow
+- **Authentication** — OTP-based login flow using an anonymous device token, with token persistence across sessions
+- **Dynamic Home Feed** — virtualized, horizontally-scrolling sections (Top 10, Continue Watching, genre rows) fetched live from the backend
+- **Content Hierarchy** — movies play directly; series route through Season → Episode selection before reaching the player
+- **Custom Video Player**
+  - HLS streaming with adaptive bitrate playback
+  - DRM-protected premium content (Widevine on Android, FairPlay on iOS)
+  - Play/pause, ±5s skip, scrub bar, fullscreen toggle with automatic orientation lock
+  - Auto-hiding controls (visible on tap, hides after a few seconds while playing)
+- **Continue Watching** — playback position is synced to the backend periodically and on exit; resuming a title picks up exactly where you left off
+- **Subscription Gating** — premium content correctly detects entitlement and prompts users to subscribe when access is not available
+- **Secure Content Delivery** — CloudFront signed-cookie authentication for protected video streams
 
----
+## Project Structure
 
-## ✨ Features
-
-### 🔐 Authentication
-
-- OTP-based login flow
-- Anonymous device token generation
-- Secure JWT authentication
-- Persistent login using AsyncStorage
-
-### 🏠 Dynamic Home Feed
-
-- Horizontally scrolling content rows
-- Live content fetched from backend APIs
-- Optimized rendering with virtualized lists
-
-### 🎬 Content Browsing
-
-- Browse Movies and TV Series
-- Season and Episode navigation
-- Dynamic API-driven content
-
-### ▶️ Custom Video Player
-
-- HLS adaptive bitrate streaming
-- Widevine DRM (Android)
-- FairPlay DRM (iOS)
-- Play/Pause controls
-- Forward & Rewind
-- Interactive seek bar
-- Fullscreen mode
-- Auto-hide player controls
-- Orientation lock
-
-### 📌 Continue Watching
-
-- Playback position synchronization
-- Resume videos from the last watched position
-
-### 💳 Subscription Gating
-
-- Detects premium content
-- Prompts users to subscribe when required
-
-### 🔒 Secure Streaming
-
-- CloudFront signed-cookie authentication
-- Protected video delivery
-
----
-
-## 🛠 Tech Stack
-
-- React Native (Expo)
-- TypeScript
-- NativeWind
-- React Navigation
-- TanStack React Query
-- Axios
-- react-native-video
-- expo-image
-- expo-screen-orientation
-- @react-native-community/slider
-- AsyncStorage
-- Expo EAS Build
-
----
-
-## 📂 Project Structure
-
-```text
+```
 src/
-├── components/       # Reusable UI components
-├── constants/        # Environment configuration
-├── hooks/            # React Query custom hooks
-├── navigation/       # Navigation setup
-├── screens/          # Application screens
-├── services/         # API service functions
-├── storage/          # Local storage utilities
-├── types/            # TypeScript definitions
-└── utils/            # Shared helper functions
-````
+├── components/       # Reusable UI components (cards, sections, player controls)
+├── constants/         # App-wide config, read from environment variables
+├── hooks/             # TanStack Query hooks wrapping each API service
+├── navigation/        # React Navigation stack definition
+├── screens/           # Screen-level components, grouped by feature
+├── services/          # API call functions (axios-based)
+├── storage/           # Local persistence helpers
+├── types/             # TypeScript types for API responses and navigation
+└── utils/             # Small shared utilities
+```
 
----
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
-* Node.js
-* npm
-* Android Studio
-* Expo CLI
-* EAS CLI
+- Node.js and npm
+- Expo CLI (`npm install -g eas-cli` for builds)
+- Android Studio (for local Android builds) or an EAS account (for cloud builds)
 
-Install EAS CLI:
+### Setup
 
-```bash
-npm install -g eas-cli
-```
+1. Clone the repository
+   ```bash
+   git clone https://github.com/ManhviYadav/ReelDrama-OTT-mobile-application.git
+   cd ReelDrama-OTT-mobile-application
+   ```
 
----
+2. Install dependencies
+   ```bash
+   npm install
+   ```
 
-## 📥 Installation
+3. Configure environment variables
+   ```bash
+   cp .env.example .env
+   ```
+   Fill in `.env` with your own API credentials. Contact the project maintainer for staging access if needed.
 
-Clone the repository:
+4. Start the development server
+   ```bash
+   npx expo start --dev-client
+   ```
 
-```bash
-git clone https://github.com/ManhviYadav/ReelDrama-OTT-mobile-application.git
-```
+   > **Note:** This project uses native modules (`react-native-video`, `expo-screen-orientation`, etc.) that are **not supported in Expo Go**. You'll need a custom development build — see below.
 
-Navigate to the project:
+### Building a Custom Dev Client
 
-```bash
-cd ReelDrama-OTT-mobile-application
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
----
-
-## ⚙️ Environment Variables
-
-Create a `.env` file from the example:
-
-```bash
-cp .env.example .env
-```
-
-Fill in the required API credentials.
-
-> Environment variables are intentionally excluded from version control.
-
----
-
-## ▶️ Run the Project
-
-Start the development server:
-
-```bash
-npx expo start --dev-client
-```
-
-> **Note:** This project uses native modules such as `react-native-video` and `expo-screen-orientation`, which are **not supported in Expo Go**.
-
----
-
-## 🏗 Building a Development Client
-
-Install Expo Dev Client:
+Since this project relies on native video/DRM modules, a standard Expo Go install will not work. Build your own dev client instead:
 
 ```bash
 npx expo install expo-dev-client
-```
-
-Create a development build:
-
-```bash
 eas build --profile development --platform android
 ```
 
-Install the generated APK on your device or emulator.
+Once the build finishes, install the resulting APK on your device or emulator, then run `npx expo start --dev-client` and connect to it.
 
-Start Metro:
+> **Note:** DRM-protected content requires a real Android/iOS device with proper Widevine/FairPlay support — most emulators do not support DRM playback.
 
-```bash
-npx expo start --dev-client
-```
+## Environment Variables
 
-> DRM-protected content requires a physical Android or iOS device. Most emulators do not support Widevine or FairPlay DRM.
+See `.env.example` for the full list of required variables. None of these values are committed to the repository — see `.gitignore`.
 
----
+## License
 
-## 📦 Major Libraries
-
-* React Native
-* Expo
-* TypeScript
-* NativeWind
-* React Navigation
-* TanStack React Query
-* Axios
-* react-native-video
-* AsyncStorage
-* Expo Image
-* Expo Screen Orientation
-
----
-
-## 📱 Supported Platforms
-
-* ✅ Android
-* ✅ iOS
-
----
-
-## 🔐 Security
-
-* JWT Authentication
-* Anonymous Device Token
-* CloudFront Signed Cookies
-* DRM Protected Streaming
-* Secure API Communication
-
----
-
-## 📄 License
-
-This project is intended for **educational and portfolio purposes**.
-
-The streaming content, backend APIs, and related assets belong to their respective owners and are **not included** in this repository.
-
-```
-```
+This project is for educational/portfolio purposes. Content and API access are property of their respective owners.
