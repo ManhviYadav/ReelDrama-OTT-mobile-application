@@ -94,6 +94,23 @@ Once the build finishes, install the resulting APK on your device or emulator, t
 
 See `.env.example` for the full list of required variables. None of these values are committed to the repository — see `.gitignore`.
 
-## License
 
-This project is for educational/portfolio purposes. Content and API access are property of their respective owners.
+## 👩‍💻 Author
+
+**Manhvi Yadav**
+
+- GitHub: https://github.com/ManhviYadav
+
+---
+
+## ⭐ Support
+
+If you found this project useful, please give it a ⭐ on GitHub.
+
+Your support motivates me to build more projects and continue learning.
+
+---
+
+## 📄 License
+
+This project is created for learning and educational purposes.
