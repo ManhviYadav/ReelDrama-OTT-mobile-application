@@ -9,9 +9,9 @@ A cross-platform **OTT streaming mobile application** built with **React Native 
 
 Watch the application in action below:
 
-**🎥 Demo Video**
 
-> Replace the placeholder below with the GitHub-generated video URL after uploading your `.mp4` file to the README.
+
+
 
 ```
 
