@@ -13,8 +13,8 @@ A cross-platform (Android/iOS) OTT streaming mobile app built with React Native 
 ### Home Feed
 
 | Carousel | Shows Tab | 
-|---|---|---|
-| ![Home carousel](./assets/screenshots/07-home-carousel.png) | ![Shows tab and Top 10](./assets/screenshots/06-home-shows-tab.png) 
+|---|---|
+| ![Home carousel](./assets/screenshots/07-home-carousel.png) | ![Shows tab and Top 10](./assets/screenshots/06-home-shows-tab.png) |
 
 | Continue Watching | Logout |
 |---|---|
