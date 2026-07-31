@@ -1,33 +1,34 @@
 {
   "expo": {
-    "name": "my-expo-app",
-    "slug": "my-expo-app",
+    "name": "ReelDrama",
+    "slug": "Reeldrama",
     "version": "1.0.0",
 
     "web": {
       "favicon": "./assets/favicon.png"
     },
-
     "experiments": {
       "tsconfigPaths": true
     },
-
     "plugins": [
       [
         "expo-splash-screen",
         {
           "image": "./assets/splash.png",
-          "backgroundColor": "#ffffff"
+          "resizeMode": "contain",
+          "backgroundColor": "#000000"
         }
-      ]
+      ],
+      "expo-secure-store",
+      "expo-image",
+      "react-native-video"
     ],
-
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-
     "userInterfaceStyle": "light",
-
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -35,6 +36,13 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "permissions": [],
+      "package": "com.anonymous.Reeldrama"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1b70414c-0627-414f-8158-74f86fba1a32"
       }
     }
   }
