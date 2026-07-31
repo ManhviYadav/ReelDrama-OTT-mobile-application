@@ -5,19 +5,6 @@ A cross-platform **OTT streaming mobile application** built with **React Native 
 
 ---
 
-## 📱 Demo
-
-Watch the application in action below:
-
-
-
-
-
-```
-
-https://github.com/user-attachments/assets/YOUR-VIDEO-ID
-
-````
 
 ### Demo Highlights
 
